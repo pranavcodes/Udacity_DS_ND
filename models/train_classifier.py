@@ -46,6 +46,11 @@ def tokenize(text):
 
 
 def build_model():
+    '''
+    Function to build a model, create pipeline, hypertuning as well as gridsearchcv
+    Input: N/A
+    Output: Returns the model
+    '''
     pipeline = Pipeline([
         ('vect', CountVectorizer()),
         ('tfidf', TfidfTransformer()),
@@ -61,6 +66,11 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    '''
+    Function to evaluate a model and return the classificatio and accurancy score.
+    Inputs: Model, X_test, y_test, Catgegory_names
+    Outputs: Prints the Classification report & Accuracy Score
+    '''    
     y_pred = model.predict(X_test)
     print(classification_report(y_pred, Y_test.values, target_names=category_names))
     # print raw accuracy score 
@@ -68,6 +78,11 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
+    '''
+    Function to save the model
+    Input: model and the file path to save the model
+    Output: save the model as pickle file in the give filepath 
+    '''
     pickle.dump(model, open(model_filepath, 'wb'))
 
 
