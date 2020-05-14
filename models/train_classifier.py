@@ -14,6 +14,12 @@ from sklearn.model_selection import GridSearchCV
 from sqlalchemy import create_engine
 
 def load_data(database_filepath):
+    '''
+    Fucntion to load the database from the given filepath and process them as X, y and category_names
+    Input: Databased filepath
+    Output: Returns the Features X & target y along with target columns names catgeory_names
+    '''
+
     table_name = 'disaster_messages'
     engine = create_engine(f"sqlite:///{database_filepath}")
     df = pd.read_sql_table(table_name,engine)
@@ -25,6 +31,11 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    '''
+    Function to tokenize the text messages
+    Input: text
+    output: cleaned tokenized text as a list object
+    '''
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
     clean_tokens = []
